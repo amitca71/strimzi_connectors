@@ -1,0 +1,25 @@
+apiVersion: "kafka.strimzi.io/v1alpha1"
+kind: "KafkaConnector"
+metadata:
+  name: "jdbc-mssql-connector"
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: io.confluent.connect.jdbc.JdbcSourceConnector
+  tasksMax: 1
+  config:
+    connection.url: "jdbc:sqlserver://xxxxxx;databaseName=amit"
+    schema.pattern: "xxx"
+    connection.user: "sa"
+    connection.password: "xxxxxt!"
+    mode: "incrementing"
+    incrementing.column.name: "id"
+    timestamp.column.name: "timestamp"
+    validate.non.null: "false"
+    table.types: "TABLE"
+    topic.prefix: ""
+    errors.log.enable: "true"
+    topic.creation.enable: "true"
+    topic.creation.default.replication.factor: 1
+    topic.creation.default.partitions: 1
+
