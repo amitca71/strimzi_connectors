@@ -1,0 +1,21 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: KafkaConnector
+metadata:
+  name: s3-source-connector
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: io.confluent.connect.s3.S3SinkConnector
+  tasksMax: 1
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    value.converter: org.apache.kafka.connect.storage.StringConverter
+    topics: xxxxx 
+    s3.bucket.name: xxxxx
+    aws.access.key.id: xxx 
+    aws.secret.access.key: o2anTJA4FRb8h4pbW4gz4/t2CU3lulUYk/i5GLoL
+    s3.region: ap-south-1
+    flush.size: 3
+    format.class: io.confluent.connect.s3.format.json.JsonFormat
+    storage.class: io.confluent.connect.s3.storage.S3Storage
