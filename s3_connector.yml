@@ -11,7 +11,6 @@ spec:
   config:
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
-    topics: xxxxx 
     s3.bucket.name: xxxxx
     aws.access.key.id: xxx 
     aws.secret.access.key: o2anTJA4FRb8h4pbW4gz4/t2CU3lulUYk/i5GLoL
@@ -19,3 +18,7 @@ spec:
     flush.size: 3
     format.class: io.confluent.connect.s3.format.json.JsonFormat
     storage.class: io.confluent.connect.s3.storage.S3Storage
+    schema.ignore: true
+    topics.regex: "[a-zA-Z]+"
+    errors.log.enable: true
+    errors.log.include.messages: true
