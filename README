@@ -1,4 +1,9 @@
-icreate connectors for JDBC and S3 for Strimizi
+create connectors for JDBC and S3 for Strimizi
+docker build  -t amitca71/strimzi-connectors-a:latest .
+docker push amitca71/strimzi-connectors-a
+pre requisite - kafka operator is up and broker accepts 
+
+kubernetes instalation (one machine):
 sudo snap install microk8s --classic
 sudo microk8s kubectl config view --raw > ~/.kube/config
 sudo chown -f -R ubuntu ~/.kube
@@ -22,15 +27,3 @@ kubectl -n kafka create -f jdbc_connector.yml
 kubectl -n kafka create -fs3_connector.yml
 
 
-dockers creation:
-cat <<EOF >Dockerfile
-FROM strimzi/kafka-connect
-USER root:root
-RUN mkdir -p /opt/kafka/plugins/jdbc
-RUN mkdir -p /opt/kafka/plugins/s3
-COPY ./confluentinc-kafka-connect-jdbc-10.0.2/lib /opt/kafka/plugins/jdbc/
-COPY ./confluentinc-kafka-connect-s3-10.0.0/ /opt/kafka/plugins/confluent-s3/
-USER 1001
-EOF
-docker build . -t amitca71/strimzi-connectors
-docker push amitca71/strimzi-connectors
